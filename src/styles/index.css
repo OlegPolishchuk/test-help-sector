@@ -23,6 +23,13 @@ p, ul {
 
 .container {
   width: 98%;
-  max-width: 1077px;
+  max-width: 1232px;
   margin: 0 auto;
+  padding: 23px 75px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  box-shadow: var(--shadow);
 }

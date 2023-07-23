@@ -1,0 +1,41 @@
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  padding: 0 40px;
+
+  color: var(--color-theme)
+}
+
+.button {
+  outline: none;
+  border: none;
+
+  font-size: 24px;
+  font-weight: 500;
+
+  background: transparent;
+  cursor: pointer;
+}
+
+.button:disabled {
+  color: var(--color-border);
+}
+
+.pages {
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 700;
+
+  display: flex;
+  gap: 8px;
+
+  flex-grow: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.page_active {
+  color: var(--color-pagination-active);
+}

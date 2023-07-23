@@ -2,11 +2,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchPosts } from 'api/api';
 import { Post } from 'models/Post';
 
-export const getPosts = createAsyncThunk<Post[]>(
+export const getPosts = createAsyncThunk<Post[], { currentPage: number }>(
   'post/getPosts',
-  async (_, { rejectWithValue }) => {
+  async ({ currentPage }, { rejectWithValue }) => {
     try {
-      const res = await fetchPosts();
+      const res = await fetchPosts(currentPage);
       const data = await res.json();
 
       return data;

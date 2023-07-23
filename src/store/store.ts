@@ -1,7 +1,9 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { appReducer } from 'store/reducers';
 import { postReducer } from 'store/reducers/postSlice';
 
 const rootReducer = combineReducers({
+  appReducer,
   postReducer,
 });
 

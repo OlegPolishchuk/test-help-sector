@@ -13,7 +13,7 @@
 
 .row {
   display: grid;
-  grid-template-columns: 10% 50% 40%;
+  grid-template-columns: 10% 45% 45%;
 
   border-bottom: var(--border);
 }
@@ -30,21 +30,9 @@
 .table_head__col {
   display: flex;
   align-items: center;
-}
+  justify-content: center;
 
-.col_id {
-  padding: 0 23px;
-  justify-content: space-between;
-}
-
-.table_head_title {
-  margin-left: 125px;
-  margin-right: 34px;
-}
-
-.table_head_description {
-  margin-left: 121px;
-  margin-right: 25px;
+  gap: 25px;
 }
 
 .table_body {
