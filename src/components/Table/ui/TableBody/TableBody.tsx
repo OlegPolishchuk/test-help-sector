@@ -1,3 +1,7 @@
+import { useAppDispatch } from 'hooks';
+import { useEffect } from 'react';
+import { getPosts } from 'store/thunks';
+
 import cls from '../Table.module.css';
 import { TableRow } from './TableRow';
 
@@ -17,6 +21,12 @@ const posts = [
 ];
 
 export const TableBody = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, []);
+
   return (
     <div className={cls.table_body}>
       {posts.map((post) => (
