@@ -1,0 +1,15 @@
+:root {
+  --color-theme: #474955;
+  --color-border: #E3E6EC;
+  --color-text: var(--color-theme);
+  --color-search-placeholder: #B2B7BF;
+  --color-search: #fff;
+  --color-table-head: #fff;
+  --color-pagination-active: #7EBC3C;
+
+  --bg-search: #5A5C66;
+  --bg-table-head: var(--color-theme);
+  --bg-table: #fff;
+
+  --border: 1px solid var(--color-border);
+}
