@@ -9,8 +9,16 @@ export const useSearchParams = () => {
   const searchValue = searchParams.get('search') || '';
 
   const setParam = useCallback((title: string, value: string) => {
-    searchParams.set(title, value.toString());
-    window.history.replaceState(null, '', `${window.location.pathname}?${searchParams.toString()}`);
+    const newSearchParams = new URLSearchParams(searchParams);
+
+    newSearchParams.set(title, value.toString());
+
+    console.log(searchParams);
+    window.history.replaceState(
+      null,
+      '',
+      `${window.location.pathname}?${newSearchParams.toString()}`,
+    );
   }, []);
 
   return {

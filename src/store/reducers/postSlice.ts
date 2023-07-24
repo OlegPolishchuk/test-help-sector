@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Post } from 'models/Post';
+import { initializeApp } from 'store/thunks';
 import { getPosts } from 'store/thunks/getPosts';
 
 export type Sort = 'asc' | 'desc';
@@ -17,6 +18,7 @@ interface InitialState {
   postLimit: number;
   sort: TableHeadSort;
   searchValue: string;
+  isFirst: boolean;
 }
 
 const initialState: InitialState = {
@@ -30,6 +32,7 @@ const initialState: InitialState = {
     title: 'asc',
   },
   searchValue: '',
+  isFirst: true,
 };
 
 const postSlice = createSlice({
@@ -61,11 +64,21 @@ const postSlice = createSlice({
     },
     setSearchValue: (state, action: PayloadAction<{ value: string }>) => {
       state.searchValue = action.payload.value;
-      state.pageNumber = 1;
+
+      if (!state.isFirst) {
+        state.pageNumber = 1;
+      }
+
+      state.isFirst = false;
     },
   },
 
   extraReducers: (builder) => {
+    builder.addCase(initializeApp.fulfilled, (state, { payload }) => {
+      state.pageNumber = payload.page;
+      state.searchValue = payload.searchValue;
+    });
+
     builder.addCase(getPosts.fulfilled, (state, { payload }) => {
       state.allPosts = payload;
       state.status = 'success';
