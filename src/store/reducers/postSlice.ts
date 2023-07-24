@@ -12,28 +12,24 @@ export interface TableHeadSort {
 
 interface InitialState {
   allPosts: Post[];
-  filteredPosts: Post[];
-  postsCount: number;
   status: 'init' | 'loading' | 'error' | 'success';
   pageNumber: number;
   postLimit: number;
-  totalCountOfPages: number;
   sort: TableHeadSort;
+  searchValue: string;
 }
 
 const initialState: InitialState = {
   allPosts: [],
-  filteredPosts: [],
-  postsCount: 0,
   status: 'init',
   pageNumber: 1,
   postLimit: 10,
-  totalCountOfPages: 1,
   sort: {
     id: 'asc',
     body: 'asc',
     title: 'asc',
   },
+  searchValue: '',
 };
 
 const postSlice = createSlice({
@@ -42,14 +38,7 @@ const postSlice = createSlice({
   reducers: {
     setPageNumber: (state, action: PayloadAction<{ page: number }>) => {
       state.pageNumber = action.payload.page;
-
-      state.filteredPosts = getPaginatesPosts(state.pageNumber, state.postLimit, state.allPosts);
     },
-
-    // setSort: (state, action: PayloadAction<Sort>) => {
-    //   state.sort = action.payload;
-    // },
-
     sortTable: (
       state,
       action: PayloadAction<{ columnTitle: keyof TableHeadSort & keyof Post }>,
@@ -70,18 +59,15 @@ const postSlice = createSlice({
           : b[columnTitle].toString().localeCompare(a[columnTitle].toString());
       });
     },
+    setSearchValue: (state, action: PayloadAction<{ value: string }>) => {
+      state.searchValue = action.payload.value;
+    },
   },
 
   extraReducers: (builder) => {
     builder.addCase(getPosts.fulfilled, (state, { payload }) => {
-      const postLength = payload.length;
-
       state.allPosts = payload;
-      state.postsCount = postLength;
       state.status = 'success';
-
-      state.filteredPosts = getPaginatesPosts(state.pageNumber, state.postLimit, payload);
-      state.totalCountOfPages = Math.ceil(postLength / state.postLimit);
     });
     builder.addCase(getPosts.rejected, (state) => {
       state.status = 'error';
@@ -93,10 +79,3 @@ const postSlice = createSlice({
 });
 
 export const { reducer: postReducer, actions: postActions } = postSlice;
-
-export function getPaginatesPosts(pageNumber: number, limit: number, posts: Post[]) {
-  const startIndex = (pageNumber - 1) * limit;
-  const endIndex = pageNumber * limit;
-
-  return posts.slice(startIndex, endIndex);
-}

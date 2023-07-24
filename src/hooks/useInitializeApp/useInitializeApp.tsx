@@ -1,6 +1,6 @@
 import { useAppDispatch } from 'hooks/useAppDispatch/useAppDispatch';
 import { useAppSelector } from 'hooks/useAppSelector/useAppSelector';
-import { usePageParams } from 'hooks/usePageParams/usePageParams';
+import { useSearchParams } from 'hooks/useSearchParams/useSearchParams';
 import { useEffect } from 'react';
 import { selectIsInitialized } from 'store/selectors';
 import { initializeApp } from 'store/thunks';
@@ -10,13 +10,17 @@ export const useInitializeApp = () => {
 
   const isInitialized = useAppSelector(selectIsInitialized);
 
-  const { currentPage, setPageParam } = usePageParams();
+  const { currentPage, setParam, searchValue } = useSearchParams();
 
   useEffect(() => {
     if (!isInitialized) {
-      dispatch(initializeApp(+currentPage));
+      dispatch(initializeApp({ page: +currentPage, searchValue }));
 
-      setPageParam(currentPage);
+      setParam('page', `${currentPage}`);
+
+      if (searchValue !== '') {
+        setParam('search', searchValue);
+      }
     }
   }, [isInitialized]);
 };

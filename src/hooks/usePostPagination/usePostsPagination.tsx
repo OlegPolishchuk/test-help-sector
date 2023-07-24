@@ -1,6 +1,6 @@
 import { useAppDispatch } from 'hooks/useAppDispatch/useAppDispatch';
 import { useAppSelector } from 'hooks/useAppSelector/useAppSelector';
-import { usePageParams } from 'hooks/usePageParams/usePageParams';
+import { useSearchParams } from 'hooks/useSearchParams/useSearchParams';
 import { useCallback } from 'react';
 import { postActions } from 'store/reducers';
 import { selectPageNumber, selectTotalCountOfPages } from 'store/selectors';
@@ -13,11 +13,12 @@ export const usePostsPagination = () => {
 
   const { setPageNumber } = postActions;
 
-  const { setPageParam } = usePageParams();
+  const { setParam } = useSearchParams();
 
   const handleChangePage = useCallback((page: number) => {
     dispatch(setPageNumber({ page }));
-    setPageParam(page);
+
+    setParam('page', `${page}`);
   }, []);
 
   return {

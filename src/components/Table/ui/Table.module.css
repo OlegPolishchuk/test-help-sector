@@ -71,6 +71,10 @@
 
 @media (max-width: 768px) {
   .table_head__col {
+    min-width: 45px;
+  }
+
+  .table_head_button {
     gap: 8px;
   }
 }
