@@ -9,18 +9,17 @@
 }
 
 .button {
-  outline: none;
-  border: none;
-
   font-size: 24px;
   font-weight: 500;
 
-  background: transparent;
+
   cursor: pointer;
 }
 
 .button:disabled {
   color: var(--color-border);
+
+  cursor: not-allowed;
 }
 
 .pages {
@@ -38,4 +37,18 @@
 
 .page_active {
   color: var(--color-pagination-active);
+}
+
+@media (max-width: 768px) {
+  .pagination {
+    padding: 0;
+  }
+
+  .pages {
+    font-size: 16px;
+  }
+
+  .button {
+    font-size: 18px;
+  }
 }

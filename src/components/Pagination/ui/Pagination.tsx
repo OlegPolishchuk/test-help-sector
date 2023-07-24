@@ -1,3 +1,5 @@
+import { clsx } from 'clsx';
+
 import cls from './Pagination.module.css';
 
 interface Props {
@@ -9,7 +11,7 @@ export const Pagination = ({ currentPage, pagesCount, onChangePage }: Props) => 
   return (
     <div className={cls.pagination}>
       <button
-        className={cls.button}
+        className={clsx(cls.button, 'button_raw')}
         onClick={() => onChangePage(currentPage - 1)}
         disabled={currentPage === 1}
       >
@@ -25,7 +27,7 @@ export const Pagination = ({ currentPage, pagesCount, onChangePage }: Props) => 
       </div>
 
       <button
-        className={cls.button}
+        className={clsx(cls.button, 'button_raw')}
         onClick={() => onChangePage(currentPage + 1)}
         disabled={currentPage === pagesCount}
       >

@@ -1,22 +1,8 @@
 import { Pagination } from 'components/Pagination';
-import { useAppDispatch, useAppSelector, usePageParams } from 'hooks';
-import { postActions } from 'store/reducers';
-import { selectPageNumber, selectTotalCountOfPages } from 'store/selectors';
+import { usePostsPagination } from 'hooks';
 
 export const PostsPagination = () => {
-  const dispatch = useAppDispatch();
-
-  const totalCountOfPages = useAppSelector(selectTotalCountOfPages);
-  const currentPage = useAppSelector(selectPageNumber);
-
-  const { setPageNumber } = postActions;
-
-  const { setPageParam } = usePageParams();
-
-  const handleChangePage = (page: number) => {
-    dispatch(setPageNumber({ page }));
-    setPageParam(page);
-  };
+  const { totalCountOfPages, currentPage, handleChangePage } = usePostsPagination();
 
   return (
     <Pagination

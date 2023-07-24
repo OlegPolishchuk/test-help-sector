@@ -33,3 +33,19 @@ p, ul {
 
   box-shadow: var(--shadow);
 }
+
+.button_raw {
+  border: none;
+  outline: none;
+
+  background: transparent;
+  cursor: pointer;
+}
+
+
+
+@media (max-width: 768px) {
+  .container {
+    padding: 23px 0;
+  }
+}

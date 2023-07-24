@@ -9,8 +9,10 @@ interface Props {
 export const TableHeadCol = ({ title, className }: Props) => {
   return (
     <div className={clsx(cls.table_head__col, className)}>
-      <p>{title}</p>
-      <ArrowIcon />
+      <button className={clsx('button_raw', cls.table_head_button)}>
+        <p>{title}</p>
+        <ArrowIcon />
+      </button>
     </div>
   );
 };

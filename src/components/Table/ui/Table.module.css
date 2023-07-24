@@ -2,15 +2,6 @@
   border: var(--border);
 }
 
-.table_head {
-  display: flex;
-  align-items: center;
-
-  background: var(--bg-table-head);
-  font-weight: 600;
-  color: var(--color-table-head);
-}
-
 .row {
   display: grid;
   grid-template-columns: 10% 45% 45%;
@@ -22,17 +13,32 @@
   border: none;
 }
 
+.table_head {
+  display: flex;
+  align-items: center;
+
+  background: var(--bg-table-head);
+
+  font-weight: 600;
+  color: var(--color-table-head);
+}
+
 .table_head .row {
   width: 100%;
   min-height: 54px;
 }
 
-.table_head__col {
+.table_head_button {
   display: flex;
   align-items: center;
   justify-content: center;
 
   gap: 25px;
+
+  height: 100%;
+  width: 100%;
+
+  color: var(--color-table-head);
 }
 
 .table_body {
@@ -56,4 +62,11 @@
 
 .table_body .col_id {
   justify-content: center;
+}
+
+
+@media (max-width: 768px) {
+  .table_head__col {
+    gap: 8px;
+  }
 }
