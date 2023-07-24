@@ -4,9 +4,9 @@ import { Post } from 'models/Post';
 
 export const getPosts = createAsyncThunk<Post[], { currentPage: number }>(
   'post/getPosts',
-  async ({ currentPage }, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const res = await fetchPosts(currentPage);
+      const res = await fetchPosts();
       const data = await res.json();
 
       return data;
