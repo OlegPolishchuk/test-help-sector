@@ -61,6 +61,7 @@ const postSlice = createSlice({
     },
     setSearchValue: (state, action: PayloadAction<{ value: string }>) => {
       state.searchValue = action.payload.value;
+      state.pageNumber = 1;
     },
   },
 
