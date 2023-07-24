@@ -41,6 +41,10 @@
   color: var(--color-table-head);
 }
 
+.table_head_button .inverted {
+  transform: rotate(180deg);
+}
+
 .table_body {
   background: var(--bg-table);
 
